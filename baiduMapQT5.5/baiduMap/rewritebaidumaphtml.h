@@ -32,8 +32,8 @@ void rewritebaidumaphtml(double lati, double lngt)
     lat[0] = lati;
     lng[0] = lngt;
 
-    ifstream in("/home/hirain/QT_learning/baiduMap/sources/baidumap.html");
-    ofstream out("/home/hirain/QT_learning/baiduMap/sources/baidumap_1.html");
+    ifstream in("/home/jiangjiang/QT_learning/baiduMap/sources/baidumap.html");
+    ofstream out("/home/jiangjiang/QT_learning/baiduMap/sources/baidumap_1.html");
     string line;
     string mapCenter = "map.centerAndZoom";
     string markers = "var markers";
