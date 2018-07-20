@@ -14,8 +14,8 @@ double lng[MARKER_NUM] = {116.360846};
 
 int main()
 {
-    ifstream in("/home/hirain/baidumap/baidumap.html");
-    ofstream out("/home/hirain/baidumap/baidumap_1.html");
+    ifstream in("/home/jiangjiang/baidumap/baidumap.html");
+    ofstream out("/home/jiangjiang/baidumap/baidumap_1.html");
     string line;
     string mapCenter = "map.centerAndZoom";
     string markers = "var markers";
