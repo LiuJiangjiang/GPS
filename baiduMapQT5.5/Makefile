@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = baiduMap1.0.0
-DISTDIR = /home/hirain/QT_learning/baiduMap/.tmp/baiduMap1.0.0
+DISTDIR = /home/jiangjiang/QT_learning/baiduMap/.tmp/baiduMap1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/opt/Qt5.5.1/5.5/gcc_64 -Wl,-rpath,/opt/Qt5.5.1/5.5/gcc_64/lib -Wl,-rpath-link,/opt/Qt5.5.1/5.5/gcc_64/lib
 LIBS          = $(SUBLIBS) -L/opt/Qt5.5.1/5.5/gcc_64/lib -lQt5WebEngineWidgets -L/usr/lib64 -lQt5WebEngine -lQt5Quick -lQt5Widgets -lQt5Gui -lQt5Qml -lQt5Network -lQt5Core -lGL -lpthread 
@@ -657,7 +657,7 @@ moc_mainwindow.cpp: /opt/Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		/opt/Qt5.5.1/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		/opt/Qt5.5.1/5.5/gcc_64/include/QtGui/qicon.h \
 		baiduMap/mainwindow.h
-	/opt/Qt5.5.1/5.5/gcc_64/bin/moc $(DEFINES) -I/opt/Qt5.5.1/5.5/gcc_64/mkspecs/linux-g++ -I/home/hirain/QT_learning/baiduMap/baiduMap -I/opt/Qt5.5.1/5.5/gcc_64/include -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWebEngine -I/opt/Qt5.5.1/5.5/gcc_64/include/QtQuick -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWidgets -I/opt/Qt5.5.1/5.5/gcc_64/include/QtGui -I/opt/Qt5.5.1/5.5/gcc_64/include/QtQml -I/opt/Qt5.5.1/5.5/gcc_64/include/QtNetwork -I/opt/Qt5.5.1/5.5/gcc_64/include/QtCore -I. baiduMap/mainwindow.h -o moc_mainwindow.cpp
+	/opt/Qt5.5.1/5.5/gcc_64/bin/moc $(DEFINES) -I/opt/Qt5.5.1/5.5/gcc_64/mkspecs/linux-g++ -I/home/jiangjiang/QT_learning/baiduMap/baiduMap -I/opt/Qt5.5.1/5.5/gcc_64/include -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWebEngineWidgets -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWebEngine -I/opt/Qt5.5.1/5.5/gcc_64/include/QtQuick -I/opt/Qt5.5.1/5.5/gcc_64/include/QtWidgets -I/opt/Qt5.5.1/5.5/gcc_64/include/QtGui -I/opt/Qt5.5.1/5.5/gcc_64/include/QtQml -I/opt/Qt5.5.1/5.5/gcc_64/include/QtNetwork -I/opt/Qt5.5.1/5.5/gcc_64/include/QtCore -I. baiduMap/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
