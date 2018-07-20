@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+    <title>百度地图API自定义地图</title>
+    <!--引用百度地图API-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hK1vUDiX7NVayGcV3SdK1QIY38bcfPhW"></script>
+  </head>
+  
+  <body>
+    <!--百度地图容器-->
+    <div style="width:700px;height:550px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+    <p style="color:red;font-weight:600">地图生成工具基于百度地图JS api v2.0版本开发，使用请申请密匙。
+      <a href="http://developer.baidu.com/map/index.php?title=jspopular/guide/introduction" style="color:#2f83c7" target="_blank">了解如何申请密匙</a>
+      <a href="http://lbsyun.baidu.com/apiconsole/key?application=key" style="color:#2f83c7" target="_blank">申请密匙</a>
+    </p>
+  </body>
+  <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+      createMap();//创建地图
+      setMapEvent();//设置地图事件
+      addMapControl();//向地图添加控件
+      addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){ 
+      map = new BMap.Map("map"); 
+			map.centerAndZoom(new BMap.Point(115,40),19)
+    }
+    function setMapEvent(){
+      map.enableScrollWheelZoom();
+      map.enableKeyboard();
+      map.enableDragging();
+      map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+      target.addEventListener("click",function(){
+        target.openInfoWindow(window);
+      });
+    }
+    function addMapOverlay(){
+      var markers = [
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.001,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.002,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.003,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.004,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.005,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.006,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.007,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.008,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.009,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.01,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.011,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.012,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.013,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.014,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.015,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.016,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.017,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.018,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.019,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.02,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.021,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.022,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.023,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.024,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.025,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.026,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.027,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.028,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.029,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.03,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.031,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.032,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.033,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.034,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.035,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.036,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.037,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.038,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.039,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.04,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.041,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.042,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.043,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.044,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.045,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.046,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.047,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.048,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.049,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.05,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.051,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.052,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.053,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.054,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.055,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.056,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.057,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.058,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.059,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.06,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.061,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.062,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.063,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.064,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.065,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.066,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.067,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.068,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.069,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.07,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.071,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.072,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.073,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.074,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.075,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.076,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.077,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.078,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.079,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.08,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.081,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.082,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.083,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.084,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.085,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.086,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.087,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.088,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.089,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.09,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.091,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.092,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.093,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.094,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.095,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.096,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.097,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.098,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.099,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.1,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.101,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.102,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.103,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.104,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.105,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.106,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.107,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.108,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.109,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.11,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.111,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.112,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.113,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.114,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.115,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.116,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.117,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.118,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.119,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.12,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.121,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.122,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.123,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.124,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.125,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.126,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.127,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.128,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.129,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.13,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.131,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.132,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.133,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.134,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.135,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.136,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.137,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.138,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.139,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.14,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.141,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.142,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.143,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.144,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.145,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.146,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.147,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.148,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.149,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.15,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.151,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.152,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.153,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.154,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.155,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.156,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.157,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.158,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.159,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.16,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.161,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.162,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.163,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.164,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.165,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.166,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.167,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.168,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.169,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.17,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.171,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.172,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.173,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.174,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.175,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.176,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.177,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.178,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.179,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.18,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.181,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.182,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.183,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.184,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.185,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.186,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.187,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.188,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.189,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.19,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.191,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.192,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.193,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.194,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.195,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.196,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.197,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.198,lng:115}},
+				{content:"",title:"",imageOffset: {width:0,height:3},position:{lat:40.199,lng:115}}
+      ];
+      for(var index = 0; index < markers.length; index++ ){
+        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+        })});
+        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+        var opts = {
+          width: 200,
+          title: markers[index].title,
+          enableMessage: false
+        };
+        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+        marker.setLabel(label);
+        addClickHandler(marker,infoWindow);
+        map.addOverlay(marker);
+      };
+    }
+    //向地图添加控件
+    function addMapControl(){
+      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+      map.addControl(scaleControl);
+      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+      map.addControl(navControl);
+      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+      map.addControl(overviewControl);
+    }
+    var map;
+      initMap();
+  </script>
+</html>
