@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   QWebEngineView *view = new QWebEngineView;
   //view->load(QUrl("http://www.baidu.com"));
 
-  view->setUrl(QUrl("file:///home/hirain/QT_learning/baiduMap/sources/baidumap_1.html"));
+  view->setUrl(QUrl("file:///home/jiangjiang/QT_learning/baiduMap/sources/baidumap_1.html"));
   view->resize(700,550);
   view->show();
 
